@@ -24,3 +24,4 @@ Route::resource('topics', 'TopicController');
 Route::resource('backoffice', 'BackofficeController');
 Route::resource('product', 'ProductController');
 Route::resource('cash_registers', 'Cash_registersController');
+Route::resource('machine', 'MachineController');

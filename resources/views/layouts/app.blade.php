@@ -11,8 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -96,3 +96,95 @@
 </body>
 </html>
 
+
+
+
+<script>$(document).ready(function() {  
+    let num1 = 0;  
+    let sumstring = '';  
+    let returnstring = 'จำนวนเงินที่คืน 0 บาท';  
+
+
+
+
+    $('button').on('click', function(e) {        
+		 if (e.target.id == 'clean_coins') {
+			sumstring='จำนวนเงิน 0 บาท'
+			returnstring='จำนวนเงินที่คืน '+num1+' บาท'
+			num1=0;
+			$('#sumcoins').text(sumstring);
+			$('#returncoins').text(returnstring);
+
+			var arrData =[]; 
+				arrData=Gettabel(); 
+   
+			jQuery.each( arrData, function( i, val ) {
+				if (i === 0) return;	
+				console.log(i + ": " + num1 +" < "+ val.col1);
+
+					$("#"+ val.col2).removeClass("visible");
+					$("#"+ val.col2).addClass("invisible");
+
+			});
+
+			setTimeout(function () {
+				$('#returncoins').text('จำนวนเงินที่คืน 0 บาท');
+			}, 2000);
+
+
+
+    }
+    else  {
+
+        let num2 = e.target.innerHTML;
+        num1=parseInt(num1)+parseInt(num2);
+
+        sumstring='จำนวนเงิน '+num1+' บาท'
+        $('#sumcoins').text(sumstring);
+
+		var arrData =[]; 
+			arrData=Gettabel(); 
+   
+
+	jQuery.each( arrData, function( i, val ) {
+		if (i === 0) return;
+	
+	console.log(i + ": " + num1 +" < "+ val.col1);
+	if(parseInt(val.col1)<=num1){;
+		$("#"+ val.col2).removeClass("invisible");
+		$("#"+ val.col2).addClass("visible");
+
+	}else{
+		$("#"+ val.col2).removeClass("visible");
+		$("#"+ val.col2).addClass("invisible");
+
+	}
+
+	});
+	
+    }});
+
+
+});
+
+
+function Gettabel(){
+	var arrDataTabel=[];
+	// loop over each table row (tr)
+	$("#datatabel tr").each(function(){
+        var currentRow=$(this);
+		
+        var col1_value=currentRow.find("td:eq(2)").text();
+		var col2_value=currentRow.find("td:eq(5)").text();
+
+
+         var obj={};
+        obj.col1=col1_value;
+        obj.col2=col2_value;
+
+        arrDataTabel.push(obj);
+   });
+   return arrDataTabel;
+}
+
+    </script>

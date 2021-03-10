@@ -22,6 +22,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/topics';
+    public const MACHINE = '/machine';
 
      /**
      * The path to the "backoffice" route for your application.
