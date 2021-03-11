@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-12">
@@ -31,7 +32,7 @@
                         <td>{{ $product->created_at }}</td>
                         <td>{{ $product->updated_at }}</td>
                         <td>
-                           <a class="btn btn-warning"href="{{ route('product.edit', $product->id) }}">แก้ไข</a>
+                           <a class="btn btn-warning" href="{{ route('product.edit', $product->id) }}">แก้ไข</a>
                         </td>
                         <td>
                                 <form method="POST" action="{{route('product.destroy', $product->id)}}">
@@ -54,5 +55,19 @@
     </div>
 
 </div>
+
+@endsection
+
+
+
+
+@section('script')
+
+
+
+<script>
+
+
+    </script>
 
 @endsection

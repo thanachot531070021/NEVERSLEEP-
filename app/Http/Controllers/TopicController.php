@@ -23,7 +23,7 @@ class TopicController extends Controller
                 Topic::raw("(select count(*) from comments  where comments.topic_id = topics.id) AS couCM"))
                 ->paginate(5)->fragment('topics');
 
-        return view('home', compact('topics'));
+              return Redirect('/machine');
     }
 
     /**
@@ -50,7 +50,7 @@ class TopicController extends Controller
  
           $topic->create($request->only(['title', 'content', 'user_id']));
  
-        return redirect()->route('topics.index');
+         return Redirect('/machine');
     }
 
 

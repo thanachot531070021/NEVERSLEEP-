@@ -20,8 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/machine', 'HomeController@index')->name('machine');
 Route::resource('topics', 'TopicController');
 Route::resource('backoffice', 'BackofficeController');
 Route::resource('product', 'ProductController');
 Route::resource('cash_registers', 'Cash_registersController');
 Route::resource('machine', 'MachineController');
+Route::resource('refund', 'RefundController');

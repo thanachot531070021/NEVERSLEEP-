@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Cash_registersRequest;
 use Illuminate\Http\Request;
 use App\Cash_registers;
-
+use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class Cash_registersController extends Controller
 {
      public function index()
     {
+
+        if (!Auth::user()){
+        return Redirect('/login');
+      }else
+      if(Auth::user()->role==0){
+        return Redirect('/machine');
+      }else{
       $Cash_registers = Cash_registers::all();
 
         return view('Cash_registers', compact('Cash_registers'));
+      }
     }
 
     public function edit($id)

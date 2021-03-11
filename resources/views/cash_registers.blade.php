@@ -4,6 +4,7 @@
 @php
     $isCreate = Request::route()->getName() == 'cash_registers.create';
 @endphp
+
 <div class="container">
     <div class="row mb-4">
         <div class="col-12">

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 use App\Product;
-
+use Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
@@ -13,14 +13,28 @@ class ProductController extends Controller
 {
       public function index()
     {
+        if (!Auth::user()){
+        return Redirect('/login');
+        }else
+        if(Auth::user()->role==0){
+            return Redirect('/machine');
+        }else{
         $product = Product::all();
         return view('backoffice', compact('product'));
+        }
     }
 
 
       public function create()
     {
+          if (!Auth::user()){
+        return Redirect('/login');
+        }else
+        if(Auth::user()->role==0){
+            return Redirect('/machine');
+        }else{
         return view('product.form');
+        }
     }
 
      public function store(ProductRequest $request)
@@ -51,7 +65,7 @@ class ProductController extends Controller
     }
 
 
-    
+
 
 
 
@@ -90,6 +104,8 @@ class ProductController extends Controller
 
 
 
+    function checkrole(){
 
+    }
 
 }
